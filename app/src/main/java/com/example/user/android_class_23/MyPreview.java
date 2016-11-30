@@ -28,13 +28,25 @@ public class MyPreview extends SurfaceView implements SurfaceHolder.Callback {
             camera.setPreviewDisplay(holder);
             camera.startPreview();
         }catch(Exception e){
-            Log.v("brad", "Preview ERROR");
+            Log.v("ppking", "Preview ERROR");
         }
     }
 
     @Override
     public void surfaceChanged(SurfaceHolder surfaceHolder, int i, int i1, int i2) {
-
+        if (holder.getSurface() == null){
+            return;
+        }
+        try {
+            camera.stopPreview();
+        } catch (Exception e){
+        }
+        try {
+            camera.setPreviewDisplay(holder);
+            camera.startPreview();
+        } catch (Exception e){
+            Log.v("ppking", " 錯誤設定觀景窗 ");
+        }
     }
 
     @Override
